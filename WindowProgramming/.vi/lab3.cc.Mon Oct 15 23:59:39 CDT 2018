@@ -1,0 +1,31 @@
+/* 
+   lab3.cc  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <ncurses.h>
+#include "DebugWindow.h"
+#include "CommandWindow.h"
+
+int main () {
+   initscr();
+   cbreak();
+   DebugWindow debugWindow = DebugWindow();
+   debugWindow.on();
+   debugWindow.pause();
+   
+   CommandWindow commandWindow = CommandWindow();
+    
+   endwin();
+}
+

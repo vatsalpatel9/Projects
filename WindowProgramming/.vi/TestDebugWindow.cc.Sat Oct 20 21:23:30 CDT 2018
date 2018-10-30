@@ -1,0 +1,42 @@
+/* 
+   TestDebugWindow.cc  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/20/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+
+using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <ncurses.h>
+#include "DebugWindow.h"
+
+DebugWindow debugWindow;
+int main () {
+   initscr();
+   cbreak();
+   debugWindow = DebugWindow();
+   debugWindow.pause();
+   string msg;
+   msg = "Press Any Key to Continue";
+   addstr(msg.c_str());
+   refresh();
+   getch();
+   
+   // Test 1 to check write opperation
+   move(0,0);
+   clear(); // clear the entire screen.
+   refresh();
+   debugWindow.write(73);// write 73 to debug window.
+   wgetch(debug);
+   
+   endwin();
+   return 0;
+}
+

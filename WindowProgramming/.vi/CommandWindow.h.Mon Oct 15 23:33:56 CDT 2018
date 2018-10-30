@@ -1,0 +1,40 @@
+/* 
+   CommandWindow.h  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+#ifndef COMMAND_WINDOW
+#define COMMAND_WINDOW
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
+#include <ncurses.h>
+using namespace std;
+
+class CommandWindow{
+ private:
+   WINDOW *command;
+   string contents;
+ 
+ public:
+   // Create a Command Window, positioned at the next to bottom line
+   // of the screen,and the full width of the screen.
+   CommandWindow(){
+      contents = "Command: ";
+      int r,c;
+      getmaxyx(stdscr, r, c);
+      command = newwin(r, c, r-2, 0);
+      waddstr(command, contents.c_str());
+      wrefresh(commad);
+      wgetch(command);
+   }
+};
+#endif
+

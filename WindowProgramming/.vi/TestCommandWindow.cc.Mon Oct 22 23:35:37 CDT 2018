@@ -1,0 +1,133 @@
+/* 
+   TestCommandWindow.cc  -- Program to  Test the methods implemented in DebugWindow.h
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/20/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+
+using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <ncurses.h>
+#include "CommandWindow.h"
+
+CommandWindow commandWindow;
+int main () {
+   initscr();
+   cbreak();
+
+   string msg;
+   msg = "Press Any Key to Continue";
+   addstr(msg.c_str());
+   refresh();
+   getch();
+
+   move(0,0);
+   clear();
+   refresh();
+
+   commandWindow = CommandWindow();
+   
+   addstr("Test 1 \n");
+   addstr("73 should appear in command window");
+   addstr("\n");
+   addstr("Hit enter to see next number which should be 83");
+   refresh();
+   
+   //Test 1 to check write(int) method.
+   commandWindow.write(73);// write 73 to debug window.
+   commandWindow.pause();
+   commandWindow.clear();
+   commandWindow.write(83);
+
+   // middle stage between test. 
+   addstr("\n");
+   addstr("Hit enter to see the next test");
+   refresh();
+   commandWindow.pause();
+   clear();
+   addstr("Test 2 \n");
+   addstr("The character 'v' should appear in command window");
+   addstr("\n");
+   addstr("Hit enter to see the next character, which should be 'x'");
+   refresh();
+ 
+   // Test 2 to check write(ch) method.
+   commandWindow.clear();
+   commandWindow.write('v');
+   commandWindow.pause();
+   commandWindow.clear();
+   commandWindow.write('x');
+ 
+   // middle stage between test.
+   addstr("\n");
+   addstr("Hit enter to see the next test");
+   refresh();
+   commandWindow.pause();
+   clear();
+   addstr("Test 3\n");
+   addstr("The string \"Hello\" should appear in command window");
+   addstr("\n");
+   addstr("Hit enter to see the next string, which should be \"World\"");
+   refresh();
+
+   // Test 3 check the write(string) method.
+   commandWindow.clear();
+   commandWindow.write("Hello");
+   commandWindow.pause();
+   commandWindow.clear();
+   commandWindow.write("World");
+   addstr("\n");
+   addstr("Hit enter to see the next test");
+   refresh();
+   commandWindow.pause();
+   clear();
+
+   // Test 4 Check the readInt() method.
+   addstr("Test 4\n");
+   addstr("Enter in any integer in the command window - followed by the enter key");
+   refresh();
+   commandWindow.clear();
+   int n = commandWindow.readInt();
+   string a = to_string(n);
+   addstr("\nThe integer you entered was: ");
+   addstr(a.c_str());
+   refresh();
+   commandWindow.clear();
+   addstr("\nEnter in one more integer");
+   refresh();
+   n = commandWindow.readInt();
+   a = to_string(n);
+   addstr("\nThe Integer you entered was: ");
+   addstr(a.c_str());
+   addstr("\nHit enter to proceed to next test");
+   refresh();
+   commandWindow.pause();
+
+   // Test 5 Check the readDouble() method.
+   clear();
+   addstr("Test5\n");
+   addstr("Enter in any Decimal number - followed by the enter key");
+   refresh();
+   commandWindow.clear();
+   double x = commandWindow.readDouble();
+   a = to_string(x);
+   addstr("\nThe decimal you entered was: ");
+   addstr(a.c_str());
+   refresh();
+   commandWindow.clear();
+   
+   
+      
+
+   getch();
+   endwin();
+   return 0;
+}
+

@@ -1,0 +1,46 @@
+/* 
+   DebugWindow.h  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+#ifndef COMMAND_WINDOW
+#define COMMAND_WINDOW
+#include <ncurses.h>
+#include <string>
+#include <iostream>
+using namespace std;
+
+class DebugWindow{
+ private:
+    WINDOW *debug;
+    char contents[] = "Debug:";
+    bool dodebug;
+
+ public:
+    DebugWindow(){
+      int r, c;
+      getmaxyx(stdscr, r, c);
+      debug = newwin(r,c,r-1,c);
+      move(r-1,c);
+      waddch(debug,contents);
+      wrefresh(debug);
+      wgetch(debug);
+    }
+
+    //Turn debugging off
+    void off() {
+       dodebug = false;
+    }
+
+    //Turn debugging on
+    void on() {
+       dodebug = true;
+    }
+};
+#endif

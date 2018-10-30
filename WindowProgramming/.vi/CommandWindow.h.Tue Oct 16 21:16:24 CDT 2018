@@ -1,0 +1,90 @@
+/* 
+   CommandWindow.h  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+#ifndef COMMAND_WINDOW
+#define COMMAND_WINDOW
+#include <ncurses.h>
+#include <string>
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+class CommandWindow{
+ private:
+    WINDOW *command;
+    string contents;
+
+ public:
+    //Creates a Command window at the bottom of the screen
+    CommandWindow(){
+      contents = "Command: ";
+      int r,c;
+      getmaxyx(stdscr, r, c);
+      command = newwin(r,c,r-2,0);
+      waddstr(command, contents.c_str());
+      wrefresh(command);
+    }
+
+    // append string to the command window string
+    void write(string s){
+      waddstr(debug,s.c_str());
+      wrefresh(command);
+    }
+
+    // append character to the command window string
+    void write (char ch) {
+       waddch(command,ch);
+       wrefresh(command);
+    }
+
+    // append integer to the command window string
+    void write (int n) {
+       string s = to_string(n);
+       waddstr(command, s.str().c_str());
+       wrefresh(command);
+    }
+
+    // Clear the Command window
+    void clear() {
+       wmove(command,0,0);
+       wclrtoeol(command);
+       waddstr(command, contents.c_str());
+       wrefresh(command);
+    }
+
+    // Pause the program by waiting for input
+    void pause() {
+       wgetch(command);
+    }
+
+    // Read an integer from the command window
+    int readInt() {
+       char line[100];
+       int value = atoi(line);
+       return value;
+    }
+
+    // Read a double from the command window
+    double readDouble() {
+       char line[100];
+       double value = atof(line);
+       return value;
+    }
+
+    // Read a string from the command window
+    string readString() {
+        char line[100];
+        wgetnstr(command,line,99);
+        return line;
+    }
+
+};
+#endif

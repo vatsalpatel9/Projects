@@ -1,0 +1,31 @@
+/* 
+   TestDebugWindow.cc  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/20/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+using namespace std;
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <ncurses.h>
+#include "DebugWindow.h"
+
+DebugWindow debugWindow;
+int main () {
+   initscr();
+   cbreak();
+   string msg;
+   msg = "hello";
+   addstr(msg.c_str());
+   refresh();
+   wgetch(debug);
+   endwin();
+   return 0;
+}
+

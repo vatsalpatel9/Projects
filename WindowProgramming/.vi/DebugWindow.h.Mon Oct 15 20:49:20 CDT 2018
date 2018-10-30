@@ -1,0 +1,35 @@
+/* 
+   DebugWindow.h  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+class DebugWindow{
+ private:
+    WINDOW *debug;
+    string contents;
+    bool dodebug;
+
+ public:
+    DebugWindow(){
+      getmaxyx(stdscr, r, c);
+      debug = newwin(r,c,r-1,c);
+      moveTo(r-1,c);
+      waddstr(debug, "debug:");
+      wrefresh(debug);
+      wgetch(debug);
+    }
+
+
+
+
+
+
+
+
+};

@@ -1,0 +1,82 @@
+/* 
+   CommandWindow.h  -- Program to  ... (Fill this in) ...
+
+   Author: Vatsal Patel
+
+   Modification History
+   Date        Action
+   10/15/18  -- Original version
+
+   ID code: 5ARc4N3ihjpc.
+*/
+#ifndef COMMAND_WINDOW
+#define COMMAND_WINDOW
+#include <ncurses.h>
+#include <string>
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+class CommandWindow{
+ private:
+    WINDOW *command;
+    string contents;
+    bool dodebug;
+
+ public:
+    //Creates a Debug window at the bottom of the screen
+    CommandWindow(){
+      contents = "Command: ";
+      int r,c;
+      getmaxyx(stdscr, r, c);
+      command = newwin(r,c,r-2,0);
+      waddstr(command, contents.c_str());
+      wrefresh(command);
+      wgetch(command);
+    }
+
+    //Turn debugging off
+    void off() {
+       dodebug = false;
+    }
+
+    //Turn debugging on
+    void on() {
+       dodebug = true;
+    }
+
+    // Print a string to the debug window
+    void write(string s){
+      // wrefresh(debug);
+    }
+
+    // Print a character to the debug window
+    void write (char ch) {
+      // wrefresh(debug);
+    }
+
+    // Print an integer to the debug window
+    void write (int n) {
+    }
+
+    // Print a string followed by an integer to the debug window
+    void write(string s, int n) {
+    }
+
+    // Clear the debug window
+    void clear() {
+    }
+
+    // Pause the program by waiting for input
+    void pause() {
+    }
+
+    // Read a string from the command window
+    string readString() {
+        char line[100];
+        string command2 =  wgetnstr(command,line,99);
+        return command2;
+    }
+
+};
+#endif
